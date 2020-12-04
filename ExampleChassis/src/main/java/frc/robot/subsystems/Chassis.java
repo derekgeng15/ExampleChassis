@@ -24,7 +24,7 @@ public class Chassis extends SubsystemBase {
   WPI_TalonSRX m_rightMaster;
   WPI_VictorSPX m_rightSlaveA;
   WPI_VictorSPX m_rightSlaveB;
-  
+
   public Chassis() {
     m_leftMaster = new WPI_TalonSRX(Constants.kLeftMaster);
     m_leftSlaveA = new WPI_VictorSPX(Constants.kLeftSlaveA);
@@ -41,7 +41,7 @@ public class Chassis extends SubsystemBase {
     m_rightSlaveB.follow(m_rightMaster);
   }
 
-  void set(double left, double right){
+  public void set(double left, double right){//1 to -1
     m_leftMaster.set(left);
     m_rightMaster.set(right);
   }

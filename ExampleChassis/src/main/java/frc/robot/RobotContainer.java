@@ -8,8 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -25,6 +28,10 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  private final Chassis m_chassis = new Chassis();
+
+  private final Joystick m_rightStick = new Joystick(0);
+  private final Joystick m_leftStick = new Joystick(1);
 
 
   /**
@@ -33,6 +40,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_chassis.setDefaultCommand(new DriveWithJoystick(m_chassis, m_leftStick, m_rightStick));
   }
 
   /**
